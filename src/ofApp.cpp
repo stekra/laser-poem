@@ -214,7 +214,6 @@ void ofApp::draw() {
     ofDrawBitmapStringHighlight("R              Reset           ", w, ofGetHeight() -  60, ofGetKeyPressed('r') ? ofColor::gray : ofColor::black);
     ofDrawBitmapStringHighlight("S              Save Settings   ", w, ofGetHeight() -  40, ofGetKeyPressed('s') ? ofColor::gray : ofColor::black);
     ofDrawBitmapStringHighlight("Esc            Quit Immediately", w, ofGetHeight() -  20, ofGetKeyPressed(OF_KEY_ESC) ? ofColor::gray : ofColor::black);
-    
 }
 
 //--------------------------------------------------------------
