@@ -7,7 +7,7 @@ int main(int argc, char *argv[]){
     
     ofApp *app = new ofApp();
             
-    for (int i = 0; i < argc - 1; i++) {
+    for (int i = 0; i < argc; i++) {
         if (ofToString(argv[i]) == "--autoArm") {
             app->autoArm = true;
         }

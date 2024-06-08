@@ -48,7 +48,7 @@ void ofApp::setup() {
     t = 0;
     
     if (autoArm) {
-        laserManager.armAllLasers();
+        laserManager.armAllLasersListener();
     }
 }
 
