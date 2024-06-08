@@ -3,7 +3,7 @@
         "CUSTOM_PARAMETERS": {
             "Animation_Time": "4.49",
             "Color": "0, 255, 0, 255",
-            "Current_SVG": "3",
+            "Current_SVG": "6",
             "Hold_Time": "0",
             "Play": "1",
             "Render_Profile": "2",
@@ -11,16 +11,16 @@
             "Resample": "1",
             "SVG_scale": "0.66",
             "downres": "10",
-            "t": "0.106074"
+            "t": "0.924946"
         },
         "Edit_laser": "1",
         "Enable_preview_navigation": "1",
-        "Global_brightness": "0.3",
+        "Global_brightness": "0.2",
         "Global_test_pattern": "0",
         "Guide_image_colour": "255, 255, 255, 255",
         "Interface": {
             "Lock_input_zones": "1",
-            "Show_input_zones": "0",
+            "Show_input_zones": "1",
             "Show_path_previews": "1",
             "Show_preview": "1"
         },
