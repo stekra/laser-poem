@@ -46,10 +46,6 @@ void ofApp::setup() {
     animationState = drawing;
     currentSVG = 0;
     t = 0;
-    
-    if (autoArm) {
-        laserManager.armAllLasersListener();
-    }
 }
 
 //--------------------------------------------------------------
@@ -162,6 +158,10 @@ void ofApp::update() {
             }
             break;
         }
+    }
+    
+    if (autoArm) {
+        laserManager.armAllLasersListener();
     }
 }
 
