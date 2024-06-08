@@ -3,7 +3,7 @@
         "CUSTOM_PARAMETERS": {
             "Animation_Time": "4.49",
             "Color": "0, 255, 0, 255",
-            "Current_SVG": "0",
+            "Current_SVG": "1",
             "Hold_Time": "0",
             "Play": "1",
             "Render_Profile": "2",
@@ -11,7 +11,7 @@
             "Resample": "1",
             "SVG_scale": "0.66",
             "downres": "10",
-            "t": "0.94388"
+            "t": "0.161542"
         },
         "Edit_laser": "1",
         "Enable_preview_navigation": "1",
