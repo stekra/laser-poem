@@ -86,8 +86,8 @@ void ofApp::update() {
             ofxLaser::Laser *l2 = laserManager.getLasers()[1];
             
             laserManager.dacAssigner.updateDacList();
-            if (!l1->hasDac() && l1->getDacConnectedState() != 0) laserManager.dacAssigner.assignToLaser("Etherdream 124DAC510BC1", *l1);
-            if (!l1->hasDac() && l2->getDacConnectedState() != 0) laserManager.dacAssigner.assignToLaser("Etherdream 9EAAFDDF841E", *l2);
+            if (!l1->hasDac() || l1->getDacConnectedState() != 0) laserManager.dacAssigner.assignToLaser("Etherdream 124DAC510BC1", *l1);
+            if (!l1->hasDac() || l2->getDacConnectedState() != 0) laserManager.dacAssigner.assignToLaser("Etherdream 9EAAFDDF841E", *l2);
         }
     }
     
