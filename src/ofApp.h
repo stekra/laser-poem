@@ -43,4 +43,6 @@ public:
     
     int laserWidth;
     int laserHeight;
+    
+    bool autoArm;
 };

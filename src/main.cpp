@@ -2,12 +2,16 @@
 #include "ofApp.h"
 
 //========================================================================
-int main( ){
-	ofSetupOpenGL(1500, 750, OF_WINDOW);			// <-------- setup the GL context
-
-	// this kicks off the running of my app
-	// can be OF_WINDOW or OF_FULLSCREEN
-	// pass in width and height too:
-	ofRunApp(new ofApp());
-
+int main(int argc, char *argv[]){
+	ofSetupOpenGL(1500, 750, OF_FULLSCREEN);
+    
+    ofApp *app = new ofApp();
+            
+    for (int i = 0; i < argc - 1; i++) {
+        if (ofToString(argv[i]) == "--autoArm") {
+            app->autoArm = true;
+        }
+    }
+    
+	ofRunApp(app);
 }

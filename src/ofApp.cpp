@@ -18,6 +18,11 @@ void ofApp::setup() {
     
     dir.close();
     
+    if (files.size() == 0) {
+        ofSystemAlertDialog("No SVGs found! Looking at data/svgs/");
+        ofExit();
+    }
+    
     for(int i = 0; i < files.size(); i++) {
         const ofFile & file = files.at(i);
         
@@ -41,6 +46,10 @@ void ofApp::setup() {
     animationState = drawing;
     currentSVG = 0;
     t = 0;
+    
+    if (autoArm) {
+        laserManager.armAllLasers();
+    }
 }
 
 //--------------------------------------------------------------
