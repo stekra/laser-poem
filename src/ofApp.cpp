@@ -51,6 +51,16 @@ void ofApp::setup() {
 //--------------------------------------------------------------
 
 void ofApp::update() {
+//    for (ofxLaser::Laser *laser : laserManager.getLasers()) {
+//        auto dacData = laserManager.dacAssigner.getDacDataForLaser(*laser);
+//        laserManager.dacAssigner.assignToLaser(dacData.label, <#Laser &laser#>)
+//    }
+    ofxLaser::Laser *l1 = laserManager.getLasers()[0];
+    ofxLaser::Laser *l2 = laserManager.getLasers()[1];
+    
+    if (l1->getDacConnectedState() == 2) laserManager.dacAssigner.assignToLaser("Etherdream 124DAC510BC1", *l1);
+    if (l2->getDacConnectedState() == 2) laserManager.dacAssigner.assignToLaser("Etherdream 9EAAFDDF841E", *l2);
+
     laserManager.update();
     
     // Animation timer
