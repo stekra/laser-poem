@@ -206,11 +206,14 @@ void ofApp::draw() {
     ofPopStyle();
     
     // Keybind Info
-    ofDrawBitmapStringHighlight("F              Fullscreen     ", ofGetWidth() / 2, ofGetHeight() - 100);
-    ofDrawBitmapStringHighlight("Shift+Tab/Tab  Prev/Next Laser", ofGetWidth() / 2, ofGetHeight() -  80);
-    ofDrawBitmapStringHighlight("Left/Right     Prev/Next SVG  ", ofGetWidth() / 2, ofGetHeight() -  60);
-    ofDrawBitmapStringHighlight("Space          Play/Pause     ", ofGetWidth() / 2, ofGetHeight() -  40);
-    ofDrawBitmapStringHighlight("R              Reset          ", ofGetWidth() / 2, ofGetHeight() -  20);
+    float w = ofGetWidth() / 2;
+    ofDrawBitmapStringHighlight("F              Fullscreen      ", w, ofGetHeight() - 140, ofGetKeyPressed('f') ? ofColor::gray : ofColor::black);
+    ofDrawBitmapStringHighlight("Shift+Tab/Tab  Prev/Next Laser ", w, ofGetHeight() - 120, ofGetKeyPressed(OF_KEY_TAB) ? ofColor::gray : ofColor::black);
+    ofDrawBitmapStringHighlight("Left/Right     Prev/Next SVG   ", w, ofGetHeight() - 100, ofGetKeyPressed(OF_KEY_LEFT) || ofGetKeyPressed(OF_KEY_RIGHT) ? ofColor::gray : ofColor::black);
+    ofDrawBitmapStringHighlight("Space          Play/Pause      ", w, ofGetHeight() -  80, ofGetKeyPressed(' ') ? ofColor::gray : ofColor::black);
+    ofDrawBitmapStringHighlight("R              Reset           ", w, ofGetHeight() -  60, ofGetKeyPressed('r') ? ofColor::gray : ofColor::black);
+    ofDrawBitmapStringHighlight("S              Save Settings   ", w, ofGetHeight() -  40, ofGetKeyPressed('s') ? ofColor::gray : ofColor::black);
+    ofDrawBitmapStringHighlight("Esc            Quit Immediately", w, ofGetHeight() -  20, ofGetKeyPressed(OF_KEY_ESC) ? ofColor::gray : ofColor::black);
     
 }
 
@@ -223,4 +226,5 @@ void ofApp::keyPressed(int key) {
     if (key == OF_KEY_RIGHT) { currentSVG = ofWrap(currentSVG + 1, 0, laserGraphics.size()); }
     if (key == ' ')          { playAnimation = !playAnimation; }
     if (key == 'r')          { animationState = drawing; currentSVG = 0; t = 0; }
+    if (key == 's')          { laserManager.saveSettings(); }
 }
