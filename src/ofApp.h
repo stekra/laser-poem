@@ -32,6 +32,7 @@ public:
     ofParameter<bool> playAnimation;
     ofParameter<float> t;
     ofParameter<float> animationTime;
+    ofParameter<float> fadeTime;
     ofParameter<float> holdTime;
     ofParameter<bool> resample;
     ofParameter<int> resolution;

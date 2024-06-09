@@ -1,25 +1,26 @@
 {
     "Laser": {
         "CUSTOM_PARAMETERS": {
-            "Animation_Time": "4.49",
+            "Animation_Time": "15",
             "Color": "0, 255, 0, 255",
-            "Current_SVG": "4",
-            "Hold_Time": "0",
+            "Current_SVG": "1",
+            "Fade_Time": "15",
+            "Hold_Time": "2.02",
             "Play": "1",
             "Render_Profile": "2",
             "Render_Profile_name": "Render Profile: OFXLASER_PROFILE_FAST",
             "Resample": "1",
             "SVG_scale": "0.66",
-            "downres": "10",
-            "t": "0.826566"
+            "downres": "20",
+            "t": "0.0677539"
         },
         "Edit_laser": "1",
         "Enable_preview_navigation": "1",
-        "Global_brightness": "0.2",
+        "Global_brightness": "0.21",
         "Global_test_pattern": "0",
         "Guide_image_colour": "255, 255, 255, 255",
         "Interface": {
-            "Lock_input_zones": "1",
+            "Lock_input_zones": "0",
             "Show_input_zones": "1",
             "Show_path_previews": "1",
             "Show_preview": "1"

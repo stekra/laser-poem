@@ -38,13 +38,14 @@ void ofApp::setup() {
     laserManager.addCustomParameter(color.set("Color", ofColor(0, 255, 0)));
     laserManager.addCustomParameter(playAnimation.set("Play", true));
     laserManager.addCustomParameter(t.set("t", 0, 0, 1));
-    laserManager.addCustomParameter(animationTime.set("Animation Time", 10, 1, 20));
-    laserManager.addCustomParameter(holdTime.set("Hold Time", 0, 0, 5));
+    laserManager.addCustomParameter(animationTime.set("Animation Time", 15, 1, 45));
+    laserManager.addCustomParameter(fadeTime.set("Fade Time", 15, 1, 45));
+    laserManager.addCustomParameter(holdTime.set("Hold Time", 5, 0.1, 30));
     laserManager.addCustomParameter(resample.set("Resample", true));
     laserManager.addCustomParameter(resolution.set("downres", 20, 2, 100));
     
-    animationState = drawing;
-    currentSVG = 0;
+    animationState = fading;
+    currentSVG = (int)laserGraphics.size() - 1;
     t = 0;
 }
 
@@ -55,39 +56,49 @@ void ofApp::update() {
     
     // Animation timer
     if (playAnimation) {
-        float td = ofGetLastFrameTime() / animationTime;
-        if (animationState == holding) {
-            if (holdTime == 0) {
-                td = 1 - t;
-            }
-            else {
+        float td;
+        switch (animationState) {
+            case drawing:
+                td = ofGetLastFrameTime() / animationTime;
+                break;
+            case holding:
                 td = ofGetLastFrameTime() / holdTime;
-            }
+                break;
+            case fading:
+                td = ofGetLastFrameTime() / fadeTime;
+                break;
         }
         t = t + td;
-        
-        if (t >= 1) {
-            t = fmod(t, 1);
-            switch (animationState) {
-                case drawing:
-                    animationState = holding;
-                    break;
-                case holding:
-                    animationState = fading;
-                    break;
-                case fading:
-                    currentSVG = ofWrap(currentSVG + 1, 0, laserGraphics.size());
-                    animationState = drawing;
-                    break;
-            }
-            
-            // Hack for auto dac assign
-            ofxLaser::Laser *l1 = laserManager.getLasers()[0];
-            ofxLaser::Laser *l2 = laserManager.getLasers()[1];
-            
-            laserManager.dacAssigner.updateDacList();
-            if (!l1->hasDac() || l1->getDacConnectedState() != 0) laserManager.dacAssigner.assignToLaser("Etherdream 124DAC510BC1", *l1);
-            if (!l1->hasDac() || l2->getDacConnectedState() != 0) laserManager.dacAssigner.assignToLaser("Etherdream 9EAAFDDF841E", *l2);
+    }
+    
+    // Change state
+    if (t >= 1) {
+        t = fmod(t, 1);
+        switch (animationState) {
+            case drawing:
+                animationState = holding;
+                break;
+            case holding:
+                animationState = fading;
+                break;
+            case fading:
+                currentSVG = ofWrap(currentSVG + 1, 0, laserGraphics.size());
+                animationState = drawing;
+                
+                // Auto arm
+                if (autoArm) {
+                    laserManager.armAllLasersListener();
+                }
+                
+                // Hack for auto dac assign
+                ofxLaser::Laser *l1 = laserManager.getLasers()[0];
+                ofxLaser::Laser *l2 = laserManager.getLasers()[1];
+                
+                laserManager.dacAssigner.updateDacList();
+                if (!l1->hasDac() || l1->getDacConnectedState() != 0) laserManager.dacAssigner.assignToLaser("Etherdream 124DAC510BC1", *l1);
+                if (!l2->hasDac() || l2->getDacConnectedState() != 0) laserManager.dacAssigner.assignToLaser("Etherdream 9EAAFDDF841E", *l2);
+                
+                break;
         }
     }
     
@@ -166,10 +177,6 @@ void ofApp::update() {
             }
             break;
         }
-    }
-    
-    if (autoArm) {
-        laserManager.armAllLasersListener();
     }
 }
 
